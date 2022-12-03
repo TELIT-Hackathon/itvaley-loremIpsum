@@ -2,7 +2,7 @@ import 'package:it_valey_hackathon_2022/entity/Message.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class GetMessagesService {
+class MessageApiService {
   static Future<List<Message>> getHotMessagesDescending() async {
     Uri requestUrl = Uri.http("https://quiet-brook-94275.herokuapp.com/get_root");
     final http.Response response = await http.get(requestUrl);
