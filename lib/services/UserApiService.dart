@@ -2,7 +2,7 @@ import 'package:it_valey_hackathon_2022/entity/User.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class GetUsersService {
+class UserApiService {
   static Future<List<User>> getAllUsers() async {
     Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/get_all_users");
     final http.Response response = await http.get(requestUrl);
