@@ -39,6 +39,7 @@ dependencies:
   google_sign_in: ^5.4.2
   shared_preferences: ^2.0.15
   flutter_redux: ^0.10.0
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
