@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:it_valey_hackathon_2022/redux/AppState.dart';
 import 'package:it_valey_hackathon_2022/redux/reducer.dart';
-import 'package:it_valey_hackathon_2022/ui/pages/LoginPage.dart';
+import 'package:it_valey_hackathon_2022/ui/pages/StartPage.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: '"<hello, world!/>',
-      home: LoginPage(),
+      home: StartPage(),
     );
   }
 }

@@ -33,26 +33,59 @@ class _LoginPageState extends State<LoginPage>{
       body: Stack(
         children: [
           Center(
-            child: Center(
-              child: SizedBox(
-                width: width * 0.8,
-                child: ElevatedButton(
-                  onPressed: (_isActiveButton == false) ? null : () async {
-                    bool res = await _loginWithFakeUser();
-                    if(res == false){
-                      setState(() {
-                        _isActiveButton = true;
-                      });
-                    }
-                  } ,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text("Login")
-                    ],
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Center(
+                  child: Text(
+                    "<hello, world!/>",
+                    style: TextStyle(
+                        color: Color.fromRGBO(234, 74, 77, 1),
+                        fontSize: 35
+                    ),
                   ),
                 ),
-              ),
+                Center(
+                  child: SizedBox(
+                    width: width * 0.8,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all<Size>(Size(width, height * 0.1)),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50.0),
+                                side: const BorderSide(
+                                    color: Color.fromRGBO(234, 74, 77, 1),
+                                    width: 5
+                                )
+                            )
+                        )
+                      ),
+                      onPressed: (_isActiveButton == false) ? null : () async {
+                        bool res = await _loginWithFakeUser();
+                        if(res == false){
+                          setState(() {
+                            _isActiveButton = true;
+                          });
+                        }
+                      } ,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text(
+                            "Login",
+                            style: TextStyle(
+                                fontSize: 25,
+                                color: Color.fromRGBO(234, 74, 77, 1)
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           Container(
