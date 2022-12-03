@@ -14,7 +14,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget{
 
 
     return AppBar(
-      automaticallyImplyLeading: false,
+      automaticallyImplyLeading: true,
       backgroundColor: const Color.fromRGBO(234, 74, 77, 1),
       title: const Text("<hello, world!/>"),
       actions: [
