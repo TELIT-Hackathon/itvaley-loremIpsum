@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "64034090936",
+    "project_id": "itvaleyhackathon2022-370515",
+    "storage_bucket": "itvaleyhackathon2022-370515.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64034090936:android:46dddef5993f000d94e94d",
+        "android_client_info": {
+          "package_name": "com.example.it_valey_hackathon_2022"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64034090936-oeetkvhonrrkm8lksm1fmvfe5170fq4u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMGSF3WmcXnSMy1sxkPEInRDylmJcYSLg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64034090936-oeetkvhonrrkm8lksm1fmvfe5170fq4u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

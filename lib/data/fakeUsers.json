@@ -1,0 +1,37 @@
+[
+  {
+    "user_id": "0",
+    "user_name": "Paul",
+    "user_last_name": "McCartney",
+    "user_type": "EXPERT",
+    "roles": ["Java"]
+  },
+  {
+    "user_id": "1",
+    "user_name": "John",
+    "user_last_name": "Brown",
+    "user_type": "DEFAULT",
+    "roles": []
+  },
+  {
+    "user_id": "2",
+    "user_name": "Marta",
+    "user_last_name": "Black",
+    "user_type": "TEACHER",
+    "roles": ["C#", "SQL", ".NET"]
+  },
+  {
+    "user_id": "3",
+    "user_name": "Jake",
+    "user_last_name": "Blake",
+    "user_type": "DEFAULT",
+    "roles": ["Java", "Spring Framework"]
+  },
+  {
+    "user_id": "4",
+    "user_name": "Andy",
+    "user_last_name": "Biersack",
+    "user_type": "EXPERT",
+    "roles": ["PHP", "Assembler"]
+  }
+]
