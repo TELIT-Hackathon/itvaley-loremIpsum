@@ -19,8 +19,7 @@ class RoleApiService {
     Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/getmessagerole?messageid=$messageId");
     final http.Response response = await http.get(requestUrl);
     final data = json.decode(response.body);
-    List<Role> roles =
-      List<Role>.from(data.map((model) => Role.fromJson(model)));
+    List<Role> roles = List<Role>.from(data.map((model) => Role.fromJson(model)));
 
     return roles;
   }

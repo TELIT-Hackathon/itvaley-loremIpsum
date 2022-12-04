@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/animate.dart';
+import 'package:flutter_animate/effects/effects.dart';
+import 'package:flutter_animate/extensions/extensions.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:it_valey_hackathon_2022/ui/pages/TopicPage.dart';
 import 'package:it_valey_hackathon_2022/ui/widgets/AnswerMessage.dart';
 import 'package:redux/redux.dart';
 import '../../entity/Message.dart';
@@ -46,17 +48,22 @@ class _TopicsByMyRolesState extends State<TopicsByMyRoles>{
                   )
               )): (_messages!.isEmpty) ? (
               const Center(child: Text("No interesting topic for you"),)
-              ) : ListView.builder(
-                physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()
+              ) : Expanded(
+                child: ListView.builder(
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics()
+                  ),
+                  controller: ScrollController(),
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.all(8),
+                  itemCount: _messages!.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return AnswerMessage(message: _messages![index])
+                        .animate()
+                        .fade(duration: 100.ms)
+                        .scale(delay: 100.ms);
+                  }
                 ),
-                controller: ScrollController(),
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(8),
-                itemCount: _messages!.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return AnswerMessage(message: _messages![index]);
-                }
               ),
             ),
     );
