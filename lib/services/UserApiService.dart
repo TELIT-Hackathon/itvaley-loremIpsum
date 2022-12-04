@@ -7,11 +7,11 @@ class UserApiService {
     Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/get_all_users");
     final http.Response response = await http.get(requestUrl);
     final data = json.decode(response.body);
-    List<User> users =
-    List<User>.from(data.map((model) => User.fromJson(model)));
+    List<User> users = List<User>.from(data.map((model) => User.fromJson(model)));
 
     return users;
   }
+
 
   static Future<User> getUsersById(String userId) async {
     Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/get_all_users?user_id=$userId");
@@ -26,7 +26,7 @@ class UserApiService {
     final http.Response response = await http.get(requestUrl);
     User user = User.fromJson(response.body);
 
-    return user;
+    return users[0];
   }
 
   static Future<int> createNewUser(User user) async {
