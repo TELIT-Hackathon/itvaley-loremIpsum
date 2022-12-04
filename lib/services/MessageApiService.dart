@@ -34,6 +34,16 @@ class MessageApiService {
     return messages;
   }
 
+  static Future<List<Message>> getMessagesByParent(String parentId) async {
+    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/get_childs?message_id=$parentId");
+    final http.Response response = await http.get(requestUrl);
+    final data = json.decode(response.body);
+    List<Message> messages =
+      List<Message>.from(data.map((model) => Message.fromJson(model)));
+
+    return messages;
+  }
+
   static Future<int> createNewMessage(Message message) async {
     Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/create_message");
     final http.Response response = await http.post(requestUrl, body: json.encode(message));
