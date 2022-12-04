@@ -26,7 +26,7 @@ class UserApiService {
     final http.Response response = await http.get(requestUrl);
     User user = User.fromJson(response.body);
 
-    return users[0];
+    return user;
   }
 
   static Future<int> createNewUser(User user) async {
