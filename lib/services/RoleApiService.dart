@@ -12,9 +12,6 @@ class RoleApiService {
     List<Role> roles =
       List<Role>.from(data.map((model) => Role.fromJson(model)));
 
-    for (Role role in roles){
-      print(role.toString());
-    }
     return roles;
   }
 
