@@ -24,9 +24,10 @@ class UserApiService {
   static Future<User> getAllAboutUserById(String userId) async {
     Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/get_all_user_info?user_id=$userId");
     final http.Response response = await http.get(requestUrl);
-    User user = User.fromJson(response.body);
+    final data = json.decode(response.body);
+    List<User> user = List<User>.from(data.map((model) => User.fromJson(model)));
 
-    return user;
+    return user[0];
   }
 
   static Future<int> createNewUser(User user) async {
