@@ -22,7 +22,7 @@ class UserApiService {
   }
 
   static Future<User> getAllAboutUserById(String userId) async {
-    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/get_all_users?user_id=$userId");
+    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/get_all_user_info?user_id=$userId");
     final http.Response response = await http.get(requestUrl);
     User user = User.fromJson(response.body);
 
