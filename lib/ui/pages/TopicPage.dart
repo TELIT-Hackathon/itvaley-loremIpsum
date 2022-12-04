@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:it_valey_hackathon_2022/entity/Message.dart';
+import 'package:it_valey_hackathon_2022/services/MessageApiService.dart';
+import 'package:it_valey_hackathon_2022/ui/widgets/AnswerMessage.dart';
 import 'package:it_valey_hackathon_2022/ui/widgets/LoadingNameText.dart';
 
 import '../widgets/MyAppBar.dart';
@@ -18,14 +20,38 @@ class _TopicPageState extends State<TopicPage>{
   bool _isLiked = false;
   bool _isDisliked = false;
 
+  List<Message>? _answers;
+
+  final TextEditingController controller = TextEditingController();
+
+  static GlobalKey<ScaffoldState> _keyForm = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+
+    MessageApiService.getMessagesByParent(widget.message.id).then((List<Message> messages){
+      setState(() {
+        _answers = messages;
+      });
+    });
+
+    super.initState();
+  }
+
+  Future<bool> _onWillPop() async {
+    return (false) ?? false;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        drawer: const SlideMenuBar(),
-        appBar: const MyAppBar(),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Scrollbar(
+    return WillPopScope(
+        onWillPop: _onWillPop,
+      child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          drawer: const SlideMenuBar(),
+          appBar: const MyAppBar(),
+          body: Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
                 Text(
@@ -131,11 +157,49 @@ class _TopicPageState extends State<TopicPage>{
                       )
                     ],
                   ),
-                )
+                ),
+                Center(
+                  child: (_answers == null) ? const Center(
+                      child: CircularProgressIndicator(
+                        color: Color.fromRGBO(234, 74, 77, 1),
+                      )
+                  ) : (_answers!.isEmpty) ? Center(
+                    child: Text("No answers yet..."),
+                  ) : Scrollbar(
+                    child: ListView.builder(
+                        physics: const BouncingScrollPhysics(
+                            parent: AlwaysScrollableScrollPhysics()
+                        ),
+                        controller: ScrollController(),
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.all(8),
+                        itemCount: _answers!.length,
+                        itemBuilder: (BuildContext context, int index){
+                          return AnswerMessage(message: _answers![index]);
+                        }
+                    ),
+                  ),
+                ),
+                TextField(
+                  controller: controller,
+                  cursorColor: const Color.fromRGBO(246, 140, 141, 1),
+                  decoration: const InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color.fromRGBO(246, 140, 141, 1)),
+                      ),
+                      hintText: "Add a reply"
+                  ),
+                  maxLines: 1,
+                  maxLength: 30,
+                  onChanged: (String str){
+                    print(str);
+                  },
+                ),
+
               ],
             ),
-          ),
-        )
+          )
+      ),
     );
   }
 

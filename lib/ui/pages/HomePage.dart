@@ -20,6 +20,9 @@ class _HomePageState extends State<HomePage>{
 
   @override
   void initState() {
+    print("-----------------------------111111111111111111111111111---------------------------");
+
+
     MessageApiService.getHotMessagesDescending().then((messages){
       List<Message> hotTopics = List.empty(growable: true);
       messages.forEach((Message message){
