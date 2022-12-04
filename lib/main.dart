@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    print("adfsefsdingiuvrbefihr fe984387ryf4");
     return const MaterialApp(
       useInheritedMediaQuery: true,
       debugShowCheckedModeBanner: false,
