@@ -1,8 +1,9 @@
+import 'package:it_valey_hackathon_2022/entity/BannedMessage.dart';
 import 'package:it_valey_hackathon_2022/entity/Message.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class GetMessagesService {
+class MessageApiService {
   static Future<List<Message>> getHotMessagesDescending() async {
     Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/get_root");
     final http.Response response = await http.get(requestUrl);
@@ -14,8 +15,8 @@ class GetMessagesService {
   }
 
   static Future<List<Message>> getMessagesByUserId(String userId) async {
-    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/messages");
-    final http.Response response = await http.get(requestUrl, headers: {"user_id":userId});
+    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/messages?userid=$userId");
+    final http.Response response = await http.get(requestUrl);
     final data = json.decode(response.body);
     List<Message> messages =
     List<Message>.from(data.map((model) => Message.fromJson(model)));
@@ -24,11 +25,21 @@ class GetMessagesService {
   }
 
   static Future<List<Message>> getMessagesByUserRoles(String userId) async {
-    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/messagesbyroles");
-    final http.Response response = await http.get(requestUrl, headers: {"user_id":userId});
+    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/messagesbyroles?userid=$userId");
+    final http.Response response = await http.get(requestUrl);
     final data = json.decode(response.body);
     List<Message> messages =
-    List<Message>.from(data.map((model) => Message.fromJson(model)));
+      List<Message>.from(data.map((model) => Message.fromJson(model)));
+
+    return messages;
+  }
+
+  static Future<List<Message>> getMessagesByParent(String parentId) async {
+    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/get_childs?message_id=$parentId");
+    final http.Response response = await http.get(requestUrl);
+    final data = json.decode(response.body);
+    List<Message> messages =
+      List<Message>.from(data.map((model) => Message.fromJson(model)));
 
     return messages;
   }
@@ -40,4 +51,10 @@ class GetMessagesService {
     return response.statusCode;
   }
 
+  static Future<int> createNewBannedMessage(BannedMessage bannedMessage) async {
+    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/create_banned_messages");
+    final http.Response response = await http.post(requestUrl, body: json.encode(bannedMessage));
+
+    return response.statusCode;
+  }
 }

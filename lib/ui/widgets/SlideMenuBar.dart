@@ -6,6 +6,9 @@ import 'package:it_valey_hackathon_2022/ui/pages/LoginPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:redux/redux.dart';
 import '../../redux/AppState.dart';
+import '../pages/ProfilePage.dart';
+import '../pages/SettingsPage.dart';
+import '../pages/TopicsPage.dart';
 
 class SlideMenuBar extends StatelessWidget{
   const SlideMenuBar({super.key});
@@ -41,6 +44,33 @@ class SlideMenuBar extends StatelessWidget{
               Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const LoginPage()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.person),
+            title: const Text("Profile"),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfilePage()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.book),
+            title: const Text("Topics"),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TopicsPage()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text("Settings"),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SettingsPage()));
             },
           ),
         ],
