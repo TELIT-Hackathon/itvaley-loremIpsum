@@ -12,7 +12,7 @@ class User{
     required this.roles});
 
   factory User.fromJson(json){
-    String id = (json['user_id'] as int).toString();
+    String id = (json['user_id']).toString();
     String name = json['user_name'] as String;
     String lastName = json['user_last_name'] as String;
     String type = json['user_type'] as String;
