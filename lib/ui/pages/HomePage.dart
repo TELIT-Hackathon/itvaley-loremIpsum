@@ -4,11 +4,8 @@ import 'package:it_valey_hackathon_2022/ui/pages/TopicPage.dart';
 import 'package:it_valey_hackathon_2022/ui/widgets/LoadingNameText.dart';
 import 'package:it_valey_hackathon_2022/ui/widgets/MyAppBar.dart';
 import 'package:it_valey_hackathon_2022/ui/widgets/SlideMenuBar.dart';
-import 'package:redux/redux.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 
 import '../../entity/Message.dart';
-import '../../redux/AppState.dart';
 
 class HomePage extends StatefulWidget{
   const HomePage({super.key});
@@ -23,7 +20,7 @@ class _HomePageState extends State<HomePage>{
 
   @override
   void initState() {
-    GetMessagesService.getHotMessagesDescending().then((messages){
+    MessageApiService.getHotMessagesDescending().then((messages){
       List<Message> hotTopics = List.empty(growable: true);
       messages.forEach((Message message){
         hotTopics.add(message);
