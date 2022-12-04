@@ -14,8 +14,8 @@ class MessageApiService {
   }
 
   static Future<List<Message>> getMessagesByUserId(String userId) async {
-    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/messages");
-    final http.Response response = await http.get(requestUrl, headers: {"user_id":userId});
+    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/messages?userid=$userId");
+    final http.Response response = await http.get(requestUrl);
     final data = json.decode(response.body);
     List<Message> messages =
     List<Message>.from(data.map((model) => Message.fromJson(model)));
@@ -24,8 +24,8 @@ class MessageApiService {
   }
 
   static Future<List<Message>> getMessagesByUserRoles(String userId) async {
-    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/messagesbyroles");
-    final http.Response response = await http.get(requestUrl, headers: {"user_id":userId});
+    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/messagesbyroles?userid=$userId");
+    final http.Response response = await http.get(requestUrl);
     final data = json.decode(response.body);
     List<Message> messages =
       List<Message>.from(data.map((model) => Message.fromJson(model)));

@@ -6,18 +6,21 @@ import '../entity/UserRole.dart';
 
 class RoleApiService {
   static Future<List<Role>> getRolesByUser(String userId) async {
-    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/getuserroles");
-    final http.Response response = await http.get(requestUrl, headers: {"user_id":userId});
+    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/getuserroles?userid=$userId");
+    final http.Response response = await http.get(requestUrl);
     final data = json.decode(response.body);
     List<Role> roles =
       List<Role>.from(data.map((model) => Role.fromJson(model)));
 
+    for (Role role in roles){
+      print(role.toString());
+    }
     return roles;
   }
 
   static Future<List<Role>> getRolesByMessage(String messageId) async {
-    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/getuserroles");
-    final http.Response response = await http.get(requestUrl, headers: {"message_id":messageId});
+    Uri requestUrl = Uri.parse("https://quiet-brook-94275.herokuapp.com/getmessagerole?messageid=$messageId");
+    final http.Response response = await http.get(requestUrl);
     final data = json.decode(response.body);
     List<Role> roles =
       List<Role>.from(data.map((model) => Role.fromJson(model)));
